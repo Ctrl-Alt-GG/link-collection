@@ -1,0 +1,35 @@
+.link-servers {
+  background: rgb(99, 102, 241);
+  background: linear-gradient(
+    90deg,
+    rgba(99, 102, 241, 1) 0%,
+    rgba(168, 85, 247, 1) 50%,
+    rgba(236, 72, 153, 1) 100%
+  );
+}
+.link-lobby {
+  background: #f5bfd3;
+  background: linear-gradient(
+    200deg,
+    #F5BFD3FF 0%,
+    #77ABE6FF 100%
+  );
+}
+.link-files {
+  background: rgb(16, 185, 129);
+  background: linear-gradient(
+    90deg,
+    rgba(16, 185, 129, 1) 0%,
+    rgba(234, 179, 8, 1) 50%,
+    rgba(249, 115, 22, 1) 100%
+  );
+}
+.link-homepage {
+  background: rgb(6, 182, 212);
+  background: linear-gradient(
+    90deg,
+    rgba(6, 182, 212, 1) 0%,
+    rgba(59, 130, 246, 1) 50%,
+    rgba(79, 70, 229, 1) 100%
+  );
+}

@@ -1,0 +1,26 @@
+theme = "lynx"
+title = "Ctrl-Alt-GG"
+
+enableEmoji = true
+enableRobotsTXT = true
+disableKinds = ["taxonomy", "term"]
+
+[params.author]
+  name = "Ctrl-Alt-GG"
+  headline = "GL&HF, IRL."
+  links = [
+    { homepage = { href = "https://www.ctrl-alt-gg.hu", text = "Homepage" } },
+    { lobby = { href = "https://lobby.ctrl-alt-gg.hu", text = "Lobby" } },
+    { servers = { href = "https://servers.ctrl-alt-gg.hu", text = "Serverlist" } },
+    { files = { href = "https://files.ctrl-alt-gg.hu", text = "Game files" } },
+    { discord = "https://discord.gg/TVJ5Xh2NC3" },
+    { steam = "https://steamcommunity.com/groups/Ctrl-Alt-GG" },
+    { facebook = "https://www.facebook.com/events/638642749088511" }
+  ]
+
+[markup.highlight]
+  noClasses = false
+
+[markup.goldmark]
+[markup.goldmark.renderer]
+  unsafe = true
