@@ -33,3 +33,12 @@
     rgba(79, 70, 229, 1) 100%
   );
 }
+.link-speedtest {
+  background: rgb(255, 0, 128);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 0, 128, 1) 0%,
+    rgba(255, 234, 0, 1) 50%,
+    rgba(0, 255, 157, 1) 100%
+  );
+}
