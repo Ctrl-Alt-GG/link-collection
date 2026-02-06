@@ -14,6 +14,7 @@ disableKinds = ["taxonomy", "term"]
     { servers = { href = "https://servers.ctrl-alt-gg.hu", text = "Serverlist" } },
     { files = { href = "https://files.ctrl-alt-gg.hu", text = "Game files" } },
     { speedtest = { href = "https://speed.ctrl-alt-gg.hu", text = "Speedtest" } },
+    { gcalendar = { href="https://calendar.google.com/calendar/u/0?cid=YmE3NzFiZTQ0YWUzYmFlNTgxNjU3ZmJlOWZlN2UzMjQ0MDVlODk0ZGYzOWJiZDEzZjU5OWI4Y2E5YjU3MzNhNkBncm91cC5jYWxlbmRhci5nb29nbGUuY29t", text="Schedule" } },
     { discord = "https://discord.gg/TVJ5Xh2NC3" },
     { steam = "https://steamcommunity.com/groups/Ctrl-Alt-GG" },
     { facebook = "https://www.facebook.com/events/638642749088511" }

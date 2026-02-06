@@ -42,3 +42,13 @@
     rgba(0, 255, 157, 1) 100%
   );
 }
+.link-gcalendar {
+  background: rgb(138, 43, 226);
+  background: linear-gradient(
+    270deg,
+    rgba(138, 43, 226, 1) 0%,
+    rgba(0, 255, 255, 1) 33%,
+    rgba(255, 105, 180, 1) 66%,
+    rgba(50, 205, 50, 1) 100%
+  );
+}
