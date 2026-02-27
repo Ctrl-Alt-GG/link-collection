@@ -52,3 +52,12 @@
     rgba(50, 205, 50, 1) 100%
   );
 }
+.link-care {
+  background: rgb(220, 38, 38);
+  background: linear-gradient(
+    160deg,
+    rgba(220, 38, 38, 1) 0%,
+    rgba(251, 146, 60, 1) 50%,
+    rgba(250, 204, 21, 1) 100%
+  );
+}
