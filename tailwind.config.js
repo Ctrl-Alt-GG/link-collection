@@ -36,7 +36,7 @@ module.exports = {
             "--tw-prose-invert-headings": theme("colors.neutral.50"),
             "--tw-prose-invert-lead": theme("colors.neutral.500"),
             "--tw-prose-invert-links": theme("colors.primary.400"),
-            "--tw-prose-invert-bold": theme("colors.neutral.DEFAULT"),
+            "--tw-prose-invert-bold": theme("colors.neutral.100"),
             "--tw-prose-invert-counters": theme("colors.neutral.400"),
             "--tw-prose-invert-bullets": theme("colors.neutral.600"),
             "--tw-prose-invert-hr": theme("colors.neutral.500"),
@@ -53,7 +53,7 @@ module.exports = {
               textDecorationColor: theme("colors.primary.300"),
               fontWeight: "500",
               "&:hover": {
-                color: theme("colors.neutral.DEFAULT"),
+                color: theme("colors.white"),
                 textDecoration: "none",
                 backgroundColor: theme("colors.primary.600"),
                 borderRadius: "0.09rem",
