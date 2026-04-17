@@ -96,45 +96,32 @@
   }
 
   .prose a {
-    text-decoration: underline;
-    text-decoration-color: var(--color-primary-300);
-    font-weight: 500;
+    @apply underline decoration-primary-300 font-medium;
   }
   .prose a:hover {
-    color: #fff;
-    text-decoration: none;
-    background-color: var(--color-primary-600);
-    border-radius: 0.09rem;
+    @apply text-white no-underline bg-primary-600 rounded-[0.09rem];
   }
   .prose a code {
-    color: var(--tw-prose-code);
+    @apply text-[var(--tw-prose-code)];
   }
 
   .prose kbd {
-    background-color: var(--color-neutral-200);
-    padding: 0.1rem 0.4rem;
-    border-radius: 0.25rem;
-    font-size: 0.9rem;
-    font-weight: 600;
+    @apply bg-neutral-200 py-[0.1rem] px-[0.4rem] rounded text-[0.9rem] font-semibold;
   }
 
   .prose mark {
-    color: var(--color-neutral-800);
-    background-color: var(--color-primary-200);
-    padding: 0.1rem 0.2rem;
-    border-radius: 0.12rem;
+    @apply text-neutral-800 bg-primary-200 py-[0.1rem] px-[0.2rem] rounded-[0.12rem];
   }
 
   @media (prefers-color-scheme: dark) {
     .prose-invert a {
-      text-decoration-color: var(--color-neutral-600);
+      @apply decoration-neutral-600;
     }
     .prose-invert kbd {
-      color: var(--color-neutral-200);
-      background-color: var(--color-neutral-700);
+      @apply text-neutral-200 bg-neutral-700;
     }
     .prose-invert mark {
-      background-color: var(--color-primary-400);
+      @apply bg-primary-400;
     }
   }
 }
@@ -146,201 +133,156 @@
   }
 
   .link-amazon {
-    @apply text-neutral-900;
-    background-color: #ff9900;
+    @apply text-neutral-900 bg-[#ff9900];
   }
   .link-apple {
-    background-color: #333;
+    @apply bg-[#333];
   }
   .link-bandcamp {
-    background-color: #1da0c3;
+    @apply bg-[#1da0c3];
   }
   .link-bluesky {
-    background: #0084ff;
-    background: linear-gradient(2.35619rad, #5a72fa 0%, #0084ff 100%);
+    @apply bg-[#0084ff] bg-[linear-gradient(2.35619rad,#5a72fa_0%,#0084ff_100%)];
   }
   .link-codepen {
-    background-color: #1e1f26;
+    @apply bg-[#1e1f26];
   }
   .link-dev {
-    background-color: #0a0a0a;
+    @apply bg-[#0a0a0a];
   }
   .link-discord {
-    background-color: #7289da;
+    @apply bg-[#7289da];
   }
   .link-dribbble {
-    background-color: #ea4c89;
+    @apply bg-[#ea4c89];
   }
   .link-facebook {
-    background-color: #1877f2;
+    @apply bg-[#1877f2];
   }
   .link-flickr {
-    background-color: #ff0184;
+    @apply bg-[#ff0184];
   }
   .link-foursquare {
-    background-color: #0732a2;
+    @apply bg-[#0732a2];
   }
   .link-github {
-    background-color: #333;
+    @apply bg-[#333];
   }
   .link-gitlab {
-    background-color: #554488;
+    @apply bg-[#554488];
   }
   .link-google {
-    background-color: #4285f4;
+    @apply bg-[#4285f4];
   }
   .link-instagram {
-    background-color: #c13584;
-    background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
+    @apply bg-[#c13584] bg-[linear-gradient(45deg,#405de6,#5851db,#833ab4,#c13584,#e1306c,#fd1d1d)];
   }
   .link-keybase {
-    background-color: #33a0ff;
+    @apply bg-[#33a0ff];
   }
   .link-kickstarter {
-    @apply text-neutral-900;
-    background-color: #06ce78;
+    @apply text-neutral-900 bg-[#06ce78];
   }
   .link-lastfm {
-    background-color: #d51007;
+    @apply bg-[#d51007];
   }
   .link-linkedin {
-    background-color: #0077b5;
+    @apply bg-[#0077b5];
   }
   .link-mastodon {
-    background-color: #6364ff;
+    @apply bg-[#6364ff];
   }
   .link-medium {
-    background-color: #00ab6c;
+    @apply bg-[#00ab6c];
   }
   .link-microsoft {
-    background-color: #08a6f0;
+    @apply bg-[#08a6f0];
   }
   .link-orcid {
-    background-color: #a6ce39;
+    @apply bg-[#a6ce39];
   }
   .link-patreon {
-    background-color: #ff434d;
+    @apply bg-[#ff434d];
   }
   .link-pinterest {
-    background-color: #e60023;
+    @apply bg-[#e60023];
   }
   .link-reddit {
-    background-color: #ff4500;
+    @apply bg-[#ff4500];
   }
   .link-researchgate {
-    background-color: #40ba9c;
+    @apply bg-[#40ba9c];
   }
   .link-slack {
-    background-color: #4a154b;
+    @apply bg-[#4a154b];
   }
   .link-snapchat {
-    @apply text-neutral-900;
-    background-color: #fffc00;
+    @apply text-neutral-900 bg-[#fffc00];
   }
   .link-soundcloud {
-    background-color: #ff8800;
-    background: linear-gradient(120deg, #ff8800, #ff3300);
+    @apply bg-[#ff8800] bg-[linear-gradient(120deg,#ff8800,#ff3300)];
   }
   .link-spotify {
-    background-color: #1db954;
+    @apply bg-[#1db954];
   }
   .link-steam {
-    background-color: #000;
+    @apply bg-black;
   }
   .link-telegram {
-    background-color: #25a3e1;
+    @apply bg-[#25a3e1];
   }
   .link-threads {
-    background-color: #000;
+    @apply bg-black;
   }
   .link-tiktok {
-    background-color: #fe2d55;
+    @apply bg-[#fe2d55];
   }
   .link-tumblr {
-    background-color: #001935;
+    @apply bg-[#001935];
   }
   .link-twitch {
-    background-color: #9146ff;
+    @apply bg-[#9146ff];
   }
   .link-twitter {
-    background-color: rgb(63, 136, 222);
+    @apply bg-[#3f88de];
   }
   .link-whatsapp {
-    background-color: #45d82c;
-    background: linear-gradient(120deg, #12990b, #45d82c);
+    @apply bg-[#45d82c] bg-[linear-gradient(120deg,#12990b,#45d82c)];
   }
   .link-x {
-    background-color: #000;
+    @apply bg-black;
   }
   .link-youtube {
-    background-color: #ff0000;
+    @apply bg-[#ff0000];
   }
   .link-stack-exchange {
-    background-color: #0095ff;
+    @apply bg-[#0095ff];
   }
   .link-stack-overflow {
-    background-color: #f48024;
+    @apply bg-[#f48024];
   }
 
   /* Ctrl-Alt-GG site links (formerly custom.css) */
   .link-servers {
-    background: rgb(99, 102, 241);
-    background: linear-gradient(
-      90deg,
-      rgba(99, 102, 241, 1) 0%,
-      rgba(168, 85, 247, 1) 50%,
-      rgba(236, 72, 153, 1) 100%
-    );
+    @apply bg-[#6366f1] bg-[linear-gradient(90deg,#6366f1_0%,#a855f7_50%,#ec4899_100%)];
   }
   .link-lobby {
-    background: #f5bfd3;
-    background: linear-gradient(200deg, #f5bfd3 0%, #77abe6 100%);
+    @apply bg-[#f5bfd3] bg-[linear-gradient(200deg,#f5bfd3_0%,#77abe6_100%)];
   }
   .link-files {
-    background: rgb(16, 185, 129);
-    background: linear-gradient(
-      90deg,
-      rgba(16, 185, 129, 1) 0%,
-      rgba(234, 179, 8, 1) 50%,
-      rgba(249, 115, 22, 1) 100%
-    );
+    @apply bg-[#10b981] bg-[linear-gradient(90deg,#10b981_0%,#eab308_50%,#f97316_100%)];
   }
   .link-homepage {
-    background: rgb(6, 182, 212);
-    background: linear-gradient(
-      90deg,
-      rgba(6, 182, 212, 1) 0%,
-      rgba(59, 130, 246, 1) 50%,
-      rgba(79, 70, 229, 1) 100%
-    );
+    @apply bg-[#06b6d4] bg-[linear-gradient(90deg,#06b6d4_0%,#3b82f6_50%,#4f46e5_100%)];
   }
   .link-speedtest {
-    background: rgb(255, 0, 128);
-    background: linear-gradient(
-      135deg,
-      rgba(255, 0, 128, 1) 0%,
-      rgba(255, 234, 0, 1) 50%,
-      rgba(0, 255, 157, 1) 100%
-    );
+    @apply bg-[#ff0080] bg-[linear-gradient(135deg,#ff0080_0%,#ffea00_50%,#00ff9d_100%)];
   }
   .link-gcalendar {
-    background: rgb(138, 43, 226);
-    background: linear-gradient(
-      270deg,
-      rgba(138, 43, 226, 1) 0%,
-      rgba(0, 255, 255, 1) 33%,
-      rgba(255, 105, 180, 1) 66%,
-      rgba(50, 205, 50, 1) 100%
-    );
+    @apply bg-[#8a2be2] bg-[linear-gradient(270deg,#8a2be2_0%,#00ffff_33%,#ff69b4_66%,#32cd32_100%)];
   }
   .link-care {
-    background: rgb(220, 38, 38);
-    background: linear-gradient(
-      160deg,
-      rgba(220, 38, 38, 1) 0%,
-      rgba(251, 146, 60, 1) 50%,
-      rgba(250, 204, 21, 1) 100%
-    );
+    @apply bg-[#dc2626] bg-[linear-gradient(160deg,#dc2626_0%,#fb923c_50%,#facc15_100%)];
   }
 
   /* Chroma syntax highlighting container */
