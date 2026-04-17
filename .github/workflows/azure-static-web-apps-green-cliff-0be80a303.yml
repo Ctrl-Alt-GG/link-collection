@@ -15,8 +15,9 @@ jobs:
     runs-on: ubuntu-latest
     name: Build and Deploy Job
     permissions:
-       id-token: write
-       contents: read
+      id-token: write
+      contents: read
+      pull-requests: write
     steps:
       - uses: actions/checkout@v6
         with:
@@ -66,6 +67,7 @@ jobs:
     permissions:
       id-token: write
       contents: read
+      pull-requests: write
     steps:
       - name: Close Pull Request
         id: closepullrequest
