@@ -1,5 +1,5 @@
 /*! tailwindcss v3.4.3 | MIT License | https://tailwindcss.com */
-/* Derived from Lynx v1.4.0 | MIT License | https://github.com/jpanther/lynx */
+@tailwind base;
 @tailwind components;
 
 /* Scale SVG icons to text size */

@@ -1,3 +1,4 @@
-link:
-  discord: Discord
-  steam: Steam
+- id: link.discord
+  translation: Discord
+- id: link.steam
+  translation: Steam
