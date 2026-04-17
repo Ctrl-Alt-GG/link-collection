@@ -23,23 +23,14 @@
     <meta name="keywords" content="{{ . }}" />
   {{- end }}
   <link rel="canonical" href="{{ .Permalink }}" />
-  {{/* Asset bundles */}}
-  {{ $assets := newScratch }}
-  {{ $cssMain := resources.Get "css/compiled/main.css" }}
-  {{ $assets.Add "css" (slice $cssMain) }}
-  {{ $cssCustom := resources.Get "css/custom.css" }}
-  {{ if $cssCustom }}
-    {{ $assets.Add "css" (slice $cssCustom) }}
-  {{ end }}
-  {{ $bundleCSS := $assets.Get "css" | resources.Concat "css/main.bundle.css" | resources.Minify | resources.Fingerprint "sha512" }}
-  <link
-    type="text/css"
-    rel="stylesheet"
-    href="{{ $bundleCSS.RelPermalink }}"
-    integrity="{{ $bundleCSS.Data.Integrity }}"
-  />
+  {{/* Typography — shared Ctrl-Alt-GG Inter font across all three sites. */}}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  {{/* Stylesheet */}}
+  {{- partialCached "head/css.html" . -}}
   {{/* Icons */}}
-  {{ partialCached "favicons.html" .Site }}
+  {{ partialCached "head/favicon.html" .Site }}
   {{/* Social */}}
   {{ template "_internal/opengraph.html" . }}
   {{ template "_internal/twitter_cards.html" . }}

@@ -1,4 +1,5 @@
 title = "Ctrl-Alt-GG"
+copyright = "2025-2026 Ctrl-Alt-GG"
 
 enableEmoji = true
 enableRobotsTXT = true
@@ -19,6 +20,11 @@ disableKinds = ["taxonomy", "term"]
     { steam = "https://steamcommunity.com/groups/Ctrl-Alt-GG" },
 #    { facebook = "https://www.facebook.com/events/638642749088511" }
   ]
+
+[module]
+  [module.hugoVersion]
+    extended = true
+    min = "0.160.0"
 
 [markup.highlight]
   noClasses = false
