@@ -24,12 +24,24 @@
   {{- $attrs := slice -}}
   {{- with $id }}{{ $attrs = $attrs | append (printf `id="%s"` .) }}{{ end -}}
   {{- with $class }}{{ $attrs = $attrs | append (printf `class="%s"` .) }}{{ end -}}
-  {{- with $size }}{{ $attrs = $attrs | append (printf `width="%s" height="%s"` . .) }}{{ end -}}
+  {{- with $size }}{{ $attrs = $attrs | append (printf `width="%v" height="%v"` . .) }}{{ end -}}
   {{- if $label -}}
     {{- $attrs = $attrs | append (printf `role="img" aria-label="%s"` $label) -}}
   {{- else -}}
     {{- $attrs = $attrs | append `aria-hidden="true" focusable="false"` -}}
   {{- end -}}
-  {{- $replacement := printf "<svg %s" (delimit $attrs " ") -}}
-  {{- $svg | replaceRE `^<svg` $replacement | safeHTML -}}
+  {{- /* Match optional XML prolog/comments, then the first <svg> opening tag and the rest.
+         Anchored at ^ so only the outermost <svg> is rewritten; nested SVGs are left intact. */ -}}
+  {{- $fullRE := `(?s)^((?:\s|<\?xml[^>]*\?>|<!--.*?-->)*?)<svg\b([^>]*)>(.*)$` -}}
+  {{- /* Extract the existing <svg> attributes by replacing the entire string with group 2 */ -}}
+  {{- $existingAttrs := replaceRE $fullRE `$2` $svg | strings.TrimSpace -}}
+  {{- /* Strip attributes we inject ourselves to prevent duplicates.
+         Injected attrs (id, class, width/height, role/aria) always take
+         precedence over whatever the source SVG contained. */ -}}
+  {{- $existingAttrs = replaceRE `\s*(?:id|class|width|height|role|aria-label|aria-hidden|focusable)\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>]+)` "" $existingAttrs -}}
+  {{- $existingAttrs = strings.TrimSpace (replaceRE `\s+` " " $existingAttrs) -}}
+  {{- $injectedAttrs := delimit $attrs " " -}}
+  {{- $newOpen := $injectedAttrs -}}
+  {{- if $existingAttrs }}{{- $newOpen = printf "%s %s" $injectedAttrs $existingAttrs -}}{{- end -}}
+  {{- $svg | replaceRE $fullRE (printf `${1}<svg %s>${3}` $newOpen) | safeHTML -}}
 {{- end -}}

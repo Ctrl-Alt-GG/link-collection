@@ -19,7 +19,7 @@ by design — keep content minimal and i18n keys simple.
 
 | Fact | Pinned in |
 |---|---|
-| Node.js version | `.nvmrc` and `engines.node` in `package.json` |
+| Node.js version | `engines.node` in `package.json` |
 | Hugo version floor | `module.hugoVersion` in `config.toml` |
 | Dev / build commands | `scripts` in `package.json` |
 | Azure deploy pipeline | `.github/workflows/azure-static-web-apps-*.yml` |
@@ -41,8 +41,8 @@ pinned source.
   and renders each entry as a `<a class="link link-{type}">` button.
 - `layouts/_default/baseof.html` — page scaffold.
 - `layouts/partials/` — `head`, `head.html`, `footer.html`, `icon.html`.
-- `assets/css/main.css` — Tailwind source; `assets/css/compiled/` is
-  **git-ignored**.
+- `assets/css/main.css` — Tailwind source; `assets/css/compiled/main.css`
+  is **committed to the repo** (CI does not run the Tailwind build).
 - `assets/icons/` — SVG icon set used by the `icon.html` partial (`{name}.svg`
   filenames map to `icon="<name>"` on link entries).
 - `assets/new_logo_long.svg` — the site wordmark; inlined via
@@ -56,15 +56,15 @@ inventing a new root.
 ## 4. Running the project
 
 ```bash
-nvm use              # honours .nvmrc
 npm ci               # install locked deps
 npm run dev          # Tailwind --watch + hugo server
 npm run build        # production build (build:css then build:hugo)
 ```
 
-Never run `hugo` without first running `npm run build:css` — the root
+Never run `hugo` without first running `npm run build:css` locally — the root
 template references link classes (e.g. `link-discord`, `link-lobby`) that
-only exist in the compiled stylesheet.
+only exist in the compiled stylesheet. (CI skips this step because
+`assets/css/compiled/main.css` is committed to the repository.)
 
 ## 5. How the link list works
 
@@ -122,8 +122,9 @@ Rules:
 ## 7. Styling (Tailwind CSS v4)
 
 - Entry: `assets/css/main.css` (`@import "tailwindcss"`, `@plugin
-  "@tailwindcss/typography"`, `@custom-variant dark (&:where(.dark, …))`).
-- Never touch `assets/css/compiled/**`.
+  "@tailwindcss/typography"`).
+- Do not edit `assets/css/compiled/main.css` by hand — regenerate it with
+  `npm run build:css` and commit the result.
 - Spawn's palette aliases: `neutral-*` → Tailwind `gray-*`, `primary-*` →
   Tailwind `purple-*`. Use `primary-*` in templates so re-palettising is a
   one-line token swap.
@@ -142,12 +143,14 @@ Two workflows live in `.github/workflows/`:
 - `release.yml` — on tag push, zips `public/` into `site.zip` and creates a
   GitHub Release with it (so the site can be hosted elsewhere if needed).
 
-Required build order in both: `npm ci` → `npm run build:css` →
-`hugo --environment production --minify`.
+Current CI behavior: the workflows run `hugo --environment production
+--minify`; they do **not** currently run `npm ci` or `npm run build:css`.
+If a change depends on rebuilt Tailwind output in CI, update the workflows
+explicitly rather than assuming CSS is regenerated there.
 
 ## 9. Do-not-touch list
 
-- `assets/css/compiled/**` — generated, git-ignored.
+- `assets/css/compiled/main.css` — committed; regenerate with `npm run build:css` when CSS source changes, then commit the updated file.
 - `public/**`, `resources/**`, `.hugo_build.lock`, `hugo_stats.json`.
 - `node_modules/**`.
 - `.github/workflows/**` unless that is the subject of the change.

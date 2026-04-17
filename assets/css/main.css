@@ -1,8 +1,6 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
-@custom-variant dark (&:where(.dark, .dark *, [data-theme="dark"], [data-theme="dark"] *));
-
 /* ──────────────────────────────────────────────────────────────────
    Ctrl-Alt-GG shared design tokens (mirrored across all three CAG
    properties). Spawn keeps purple as the functional accent — the
