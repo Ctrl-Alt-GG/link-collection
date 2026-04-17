@@ -22,7 +22,7 @@
       {{ end }}
       <img
         src="/new_logo_long.svg"
-        alt="Ctrl-Alt-GG logo"
+        alt="{{ .Site.Params.Author.name | default .Site.Title }}"
         class="mb-2"
         style="height: 80px; width: auto;"
       />

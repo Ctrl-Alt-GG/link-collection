@@ -20,7 +20,6 @@ jobs:
     steps:
       - uses: actions/checkout@v6
         with:
-          submodules: true
           lfs: false
       - name: Install OIDC Client from Core Package
         run: npm install @actions/core@1.6.0 @actions/http-client
@@ -70,7 +69,6 @@ jobs:
     steps:
       - uses: actions/checkout@v6
         with:
-          submodules: true
           lfs: false
       - name: Install OIDC Client from Core Package
         run: npm install @actions/core@1.6.0 @actions/http-client
