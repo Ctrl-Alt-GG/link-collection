@@ -11,6 +11,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -35,10 +37,29 @@ jobs:
         run: hugo --environment production --minify
 
       - name: Create release zip
+        if: startsWith(github.ref, 'refs/tags/')
         run: zip -r site.zip public/
 
-      - name: Create Release
+      - name: Upload artifact
         if: startsWith(github.ref, 'refs/tags/')
+        uses: actions/upload-artifact@v4
+        with:
+          name: site
+          path: site.zip
+
+  release:
+    needs: build
+    if: startsWith(github.ref, 'refs/tags/')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: site
+
+      - name: Create Release
         uses: softprops/action-gh-release@v3
         with:
           files: site.zip
