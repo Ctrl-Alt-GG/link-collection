@@ -20,12 +20,14 @@
           src="{{ $src }}"
         />
       {{ end }}
-      <img
-        src="/new_logo_long.svg"
-        alt="{{ .Site.Params.Author.name | default .Site.Title }}"
-        class="mb-2"
-        style="height: 80px; width: auto;"
-      />
+      {{ with resources.Get "new_logo_long.svg" }}
+        <span
+          class="mb-2 text-neutral-900 dark:text-white"
+          role="img"
+          aria-label="{{ $.Site.Params.Author.name | default $.Site.Title }}"
+          style="display:block;height:80px"
+        >{{ .Content | safeHTML }}</span>
+      {{ end }}
       {{ with .Site.Params.Author.headline }}
         <h2 class="text-xl text-neutral-500 dark:text-neutral-400">
           {{ . | markdownify | emojify }}

@@ -7,6 +7,7 @@
    viewBox="0 0 186.55562 37.429928"
    version="1.1"
    id="svg18187"
+   style="height:100%;width:auto"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg">
   <defs
@@ -17,6 +18,7 @@
     <g
        aria-label="CTRL-ALT"
        id="text4411-0-9"
+       fill="currentColor"
        style="font-weight:bold;font-size:31.4325px;line-height:1.25;font-family:'TeX Gyre Adventor';-inkscape-font-specification:'TeX Gyre Adventor Bold';stroke-width:0.785807">
       <path
          d="m 10.044298,145.04716 c 0,6.69512 5.437823,12.10151 12.227243,12.10151 4.746308,0 8.895398,-2.64033 10.718483,-6.88371 h -5.060633 c -1.88595,1.98024 -3.52044,2.73462 -5.752148,2.73462 -4.27482,0 -7.79526,-3.5833 -7.79526,-7.92099 0,-4.36911 3.26898,-7.82669 7.700963,-7.82669 2.703195,0 4.52628,0.88011 6.097905,2.92322 h 4.809173 c -2.043113,-4.49484 -6.223635,-7.07231 -11.001376,-7.07231 -6.569392,0 -11.94435,5.37496 -11.94435,11.94435 z"
