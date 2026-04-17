@@ -4,6 +4,8 @@
   <body
     class="bg-neutral m-auto flex min-h-screen max-w-7xl flex-col px-6 text-lg leading-7 text-neutral-900 sm:px-14 md:px-24 lg:px-32 dark:bg-neutral-800 dark:text-white"
   >
+    {{- /* Ctrl-Alt-GG family hairline — the shared brand signature across all three CAG sites. */ -}}
+    <div class="-mx-6 sm:-mx-14 md:-mx-24 lg:-mx-32 h-1 bg-brand-600" aria-hidden="true"></div>
     <main class="flex-grow">{{- block "main" . }}{{- end }}</main>
     {{- partial "footer.html" . -}}
   </body>

@@ -61,7 +61,7 @@
               rel="me noopener noreferrer"
             >
               {{- with $icon -}}
-                {{- partial "icon.html" . -}}
+                {{- partial "icon.html" (dict "name" . "class" "icon relative mr-1 inline-block align-text-bottom h-[1em] w-[1em]") -}}
               {{- end -}}
               {{ $text | emojify }}
             </a>

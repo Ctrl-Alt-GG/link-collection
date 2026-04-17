@@ -1,159 +1,352 @@
-/*! tailwindcss v3.4.3 | MIT License | https://tailwindcss.com */
-@tailwind base;
-@tailwind components;
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
-/* Scale SVG icons to text size */
-.icon svg {
-  height: 1em;
-  width: 1em;
-}
+@custom-variant dark (&:where(.dark, .dark *, [data-theme="dark"], [data-theme="dark"] *));
 
-/* Links */
-.link {
-  @apply bg-primary-700 text-white hover:brightness-90;
-}
+/* ──────────────────────────────────────────────────────────────────
+   Ctrl-Alt-GG shared design tokens (mirrored across all three CAG
+   properties). Spawn keeps purple as the functional accent — the
+   event-portal vibe — while inheriting the brand red palette for
+   cross-brand highlights and the shared Inter typography.
+   ────────────────────────────────────────────────────────────────── */
+@theme {
+  /* Ctrl-Alt-GG brand red (cross-brand accent). */
+  --color-brand-50:  #fff1f1;
+  --color-brand-100: #ffd9d9;
+  --color-brand-200: #ffb3b3;
+  --color-brand-300: #ff7676;
+  --color-brand-400: #f14848;
+  --color-brand-500: #dd2525;
+  --color-brand-600: #aa0000;
+  --color-brand-700: #770000;
+  --color-brand-800: #560000;
+  --color-brand-900: #3d0000;
 
-.link-amazon {
-  @apply text-neutral-900;
-  background-color: #ff9900;
-}
-.link-apple {
-  background-color: #333;
-}
-.link-bandcamp {
-  background-color: #1da0c3;
-}
-.link-bluesky {
-  background: #0084ff;
-  background: linear-gradient(2.35619rad, #5a72fa 0%, #0084ff 100%);
-}
-.link-codepen {
-  background-color: #1e1f26;
-}
-.link-dev {
-  background-color: #0a0a0a;
-}
-.link-discord {
-  background-color: #7289da;
-}
-.link-dribbble {
-  background-color: #ea4c89;
-}
-.link-facebook {
-  background-color: #1877f2;
-}
-.link-flickr {
-  background-color: #ff0184;
-}
-.link-foursquare {
-  background-color: #0732a2;
-}
-.link-github {
-  background-color: #333;
-}
-.link-gitlab {
-  background-color: #554488;
-}
-.link-google {
-  background-color: #4285f4;
-}
-.link-instagram {
-  background-color: #c13584;
-  background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
-}
-.link-keybase {
-  background-color: #33a0ff;
-}
-.link-kickstarter {
-  @apply text-neutral-900;
-  background-color: #06ce78;
-}
-.link-lastfm {
-  background-color: #d51007;
-}
-.link-linkedin {
-  background-color: #0077b5;
-}
-.link-mastodon {
-  background-color: #6364ff;
-}
-.link-medium {
-  background-color: #00ab6c;
-}
-.link-microsoft {
-  background-color: #08a6f0;
-}
-.link-orcid {
-  background-color: #a6ce39;
-}
-.link-patreon {
-  background-color: #ff434d;
-}
-.link-pinterest {
-  background-color: #e60023;
-}
-.link-reddit {
-  background-color: #ff4500;
-}
-.link-researchgate {
-  background-color: #40ba9c;
-}
-.link-slack {
-  background-color: #4a154b;
-}
-.link-snapchat {
-  @apply text-neutral-900;
-  background-color: #fffc00;
-}
-.link-soundcloud {
-  background-color: #ff8800;
-  background: linear-gradient(120deg, #ff8800, #ff3300);
-}
-.link-spotify {
-  background-color: #1db954;
-}
-.link-steam {
-  background-color: #000;
-}
-.link-telegram {
-  background-color: #25a3e1;
-}
-.link-threads {
-  background-color: #000;
-}
-.link-tiktok {
-  background-color: #fe2d55;
-}
-.link-tumblr {
-  background-color: #001935;
-}
-.link-twitch {
-  background-color: #9146ff;
-}
-.link-twitter {
-  background-color: rgb(63, 136, 222);
-}
-.link-whatsapp {
-  background-color: #45d82c;
-  background: linear-gradient(120deg, #12990b, #45d82c);
-}
-.link-x {
-  background-color: #000;
-}
-.link-youtube {
-  background-color: #ff0000;
-}
-.link-stack-exchange {
-  background-color: #0095ff;
-}
-.link-stack-overflow {
-  background-color: #f48024;
+  /* Typography — Inter first, system fallback. */
+  --font-sans: "Inter", "Inter var", ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans",
+    Arial, sans-serif;
+
+  /* Shared radius & elevation scale. */
+  --radius-pill: 9999px;
+  --radius-card: 0.875rem;
+  --radius-panel: 1.25rem;
+  --shadow-card: 0 1px 2px rgb(0 0 0 / 0.06), 0 8px 24px rgb(0 0 0 / 0.08);
+  --shadow-panel: 0 2px 4px rgb(0 0 0 / 0.05), 0 20px 50px rgb(0 0 0 / 0.12);
+
+  /* Alias neutral -> gray and primary -> purple to preserve Spawn's palette. */
+  --color-neutral-50: var(--color-gray-50);
+  --color-neutral-100: var(--color-gray-100);
+  --color-neutral-200: var(--color-gray-200);
+  --color-neutral-300: var(--color-gray-300);
+  --color-neutral-400: var(--color-gray-400);
+  --color-neutral-500: var(--color-gray-500);
+  --color-neutral-600: var(--color-gray-600);
+  --color-neutral-700: var(--color-gray-700);
+  --color-neutral-800: var(--color-gray-800);
+  --color-neutral-900: var(--color-gray-900);
+  --color-neutral-950: var(--color-gray-950);
+
+  --color-primary-50: var(--color-purple-50);
+  --color-primary-100: var(--color-purple-100);
+  --color-primary-200: var(--color-purple-200);
+  --color-primary-300: var(--color-purple-300);
+  --color-primary-400: var(--color-purple-400);
+  --color-primary-500: var(--color-purple-500);
+  --color-primary-600: var(--color-purple-600);
+  --color-primary-700: var(--color-purple-700);
+  --color-primary-800: var(--color-purple-800);
+  --color-primary-900: var(--color-purple-900);
+  --color-primary-950: var(--color-purple-950);
 }
 
-/* -- Chroma Highlight -- */
-/* Background */
-.prose .chroma {
-  @apply rounded-md bg-neutral-50 text-neutral-700 dark:bg-neutral-700 dark:text-neutral-200;
+@layer base {
+  /* Prose typography customisation (replaces the v3 JS theme.extend.typography). */
+  .prose {
+    --tw-prose-body: var(--color-neutral-700);
+    --tw-prose-headings: var(--color-neutral-800);
+    --tw-prose-lead: var(--color-neutral-500);
+    --tw-prose-links: var(--color-primary-700);
+    --tw-prose-bold: var(--color-neutral-900);
+    --tw-prose-counters: var(--color-neutral-800);
+    --tw-prose-bullets: var(--color-neutral-500);
+    --tw-prose-hr: var(--color-neutral-200);
+    --tw-prose-quotes: var(--color-neutral-700);
+    --tw-prose-quote-borders: var(--color-primary-200);
+    --tw-prose-captions: var(--color-neutral-500);
+    --tw-prose-code: var(--color-primary-700);
+    --tw-prose-pre-code: var(--color-neutral-700);
+    --tw-prose-pre-bg: var(--color-neutral-50);
+    --tw-prose-th-borders: var(--color-neutral-500);
+    --tw-prose-td-borders: var(--color-neutral-300);
+    --tw-prose-invert-body: var(--color-neutral-300);
+    --tw-prose-invert-headings: var(--color-neutral-50);
+    --tw-prose-invert-lead: var(--color-neutral-500);
+    --tw-prose-invert-links: var(--color-primary-400);
+    --tw-prose-invert-bold: var(--color-neutral-100);
+    --tw-prose-invert-counters: var(--color-neutral-400);
+    --tw-prose-invert-bullets: var(--color-neutral-600);
+    --tw-prose-invert-hr: var(--color-neutral-500);
+    --tw-prose-invert-quotes: var(--color-neutral-200);
+    --tw-prose-invert-quote-borders: var(--color-primary-900);
+    --tw-prose-invert-captions: var(--color-neutral-400);
+    --tw-prose-invert-code: var(--color-primary-400);
+    --tw-prose-invert-pre-code: var(--color-neutral-200);
+    --tw-prose-invert-pre-bg: var(--color-neutral-700);
+    --tw-prose-invert-th-borders: var(--color-neutral-500);
+    --tw-prose-invert-td-borders: var(--color-neutral-700);
+  }
+
+  .prose a {
+    text-decoration: underline;
+    text-decoration-color: var(--color-primary-300);
+    font-weight: 500;
+  }
+  .prose a:hover {
+    color: #fff;
+    text-decoration: none;
+    background-color: var(--color-primary-600);
+    border-radius: 0.09rem;
+  }
+  .prose a code {
+    color: var(--tw-prose-code);
+  }
+
+  .prose kbd {
+    background-color: var(--color-neutral-200);
+    padding: 0.1rem 0.4rem;
+    border-radius: 0.25rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+
+  .prose mark {
+    color: var(--color-neutral-800);
+    background-color: var(--color-primary-200);
+    padding: 0.1rem 0.2rem;
+    border-radius: 0.12rem;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .prose-invert a {
+      text-decoration-color: var(--color-neutral-600);
+    }
+    .prose-invert kbd {
+      color: var(--color-neutral-200);
+      background-color: var(--color-neutral-700);
+    }
+    .prose-invert mark {
+      background-color: var(--color-primary-400);
+    }
+  }
 }
 
-@tailwind utilities;
+@layer components {
+  /* Links */
+  .link {
+    @apply bg-primary-700 text-white hover:brightness-90;
+  }
+
+  .link-amazon {
+    @apply text-neutral-900;
+    background-color: #ff9900;
+  }
+  .link-apple {
+    background-color: #333;
+  }
+  .link-bandcamp {
+    background-color: #1da0c3;
+  }
+  .link-bluesky {
+    background: #0084ff;
+    background: linear-gradient(2.35619rad, #5a72fa 0%, #0084ff 100%);
+  }
+  .link-codepen {
+    background-color: #1e1f26;
+  }
+  .link-dev {
+    background-color: #0a0a0a;
+  }
+  .link-discord {
+    background-color: #7289da;
+  }
+  .link-dribbble {
+    background-color: #ea4c89;
+  }
+  .link-facebook {
+    background-color: #1877f2;
+  }
+  .link-flickr {
+    background-color: #ff0184;
+  }
+  .link-foursquare {
+    background-color: #0732a2;
+  }
+  .link-github {
+    background-color: #333;
+  }
+  .link-gitlab {
+    background-color: #554488;
+  }
+  .link-google {
+    background-color: #4285f4;
+  }
+  .link-instagram {
+    background-color: #c13584;
+    background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
+  }
+  .link-keybase {
+    background-color: #33a0ff;
+  }
+  .link-kickstarter {
+    @apply text-neutral-900;
+    background-color: #06ce78;
+  }
+  .link-lastfm {
+    background-color: #d51007;
+  }
+  .link-linkedin {
+    background-color: #0077b5;
+  }
+  .link-mastodon {
+    background-color: #6364ff;
+  }
+  .link-medium {
+    background-color: #00ab6c;
+  }
+  .link-microsoft {
+    background-color: #08a6f0;
+  }
+  .link-orcid {
+    background-color: #a6ce39;
+  }
+  .link-patreon {
+    background-color: #ff434d;
+  }
+  .link-pinterest {
+    background-color: #e60023;
+  }
+  .link-reddit {
+    background-color: #ff4500;
+  }
+  .link-researchgate {
+    background-color: #40ba9c;
+  }
+  .link-slack {
+    background-color: #4a154b;
+  }
+  .link-snapchat {
+    @apply text-neutral-900;
+    background-color: #fffc00;
+  }
+  .link-soundcloud {
+    background-color: #ff8800;
+    background: linear-gradient(120deg, #ff8800, #ff3300);
+  }
+  .link-spotify {
+    background-color: #1db954;
+  }
+  .link-steam {
+    background-color: #000;
+  }
+  .link-telegram {
+    background-color: #25a3e1;
+  }
+  .link-threads {
+    background-color: #000;
+  }
+  .link-tiktok {
+    background-color: #fe2d55;
+  }
+  .link-tumblr {
+    background-color: #001935;
+  }
+  .link-twitch {
+    background-color: #9146ff;
+  }
+  .link-twitter {
+    background-color: rgb(63, 136, 222);
+  }
+  .link-whatsapp {
+    background-color: #45d82c;
+    background: linear-gradient(120deg, #12990b, #45d82c);
+  }
+  .link-x {
+    background-color: #000;
+  }
+  .link-youtube {
+    background-color: #ff0000;
+  }
+  .link-stack-exchange {
+    background-color: #0095ff;
+  }
+  .link-stack-overflow {
+    background-color: #f48024;
+  }
+
+  /* Ctrl-Alt-GG site links (formerly custom.css) */
+  .link-servers {
+    background: rgb(99, 102, 241);
+    background: linear-gradient(
+      90deg,
+      rgba(99, 102, 241, 1) 0%,
+      rgba(168, 85, 247, 1) 50%,
+      rgba(236, 72, 153, 1) 100%
+    );
+  }
+  .link-lobby {
+    background: #f5bfd3;
+    background: linear-gradient(200deg, #f5bfd3 0%, #77abe6 100%);
+  }
+  .link-files {
+    background: rgb(16, 185, 129);
+    background: linear-gradient(
+      90deg,
+      rgba(16, 185, 129, 1) 0%,
+      rgba(234, 179, 8, 1) 50%,
+      rgba(249, 115, 22, 1) 100%
+    );
+  }
+  .link-homepage {
+    background: rgb(6, 182, 212);
+    background: linear-gradient(
+      90deg,
+      rgba(6, 182, 212, 1) 0%,
+      rgba(59, 130, 246, 1) 50%,
+      rgba(79, 70, 229, 1) 100%
+    );
+  }
+  .link-speedtest {
+    background: rgb(255, 0, 128);
+    background: linear-gradient(
+      135deg,
+      rgba(255, 0, 128, 1) 0%,
+      rgba(255, 234, 0, 1) 50%,
+      rgba(0, 255, 157, 1) 100%
+    );
+  }
+  .link-gcalendar {
+    background: rgb(138, 43, 226);
+    background: linear-gradient(
+      270deg,
+      rgba(138, 43, 226, 1) 0%,
+      rgba(0, 255, 255, 1) 33%,
+      rgba(255, 105, 180, 1) 66%,
+      rgba(50, 205, 50, 1) 100%
+    );
+  }
+  .link-care {
+    background: rgb(220, 38, 38);
+    background: linear-gradient(
+      160deg,
+      rgba(220, 38, 38, 1) 0%,
+      rgba(251, 146, 60, 1) 50%,
+      rgba(250, 204, 21, 1) 100%
+    );
+  }
+
+  /* Chroma syntax highlighting container */
+  .prose .chroma {
+    @apply rounded-md bg-neutral-50 text-neutral-700 dark:bg-neutral-700 dark:text-neutral-200;
+  }
+}

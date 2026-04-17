@@ -2,3 +2,9 @@
   translation: Discord
 - id: link.steam
   translation: Steam
+- id: link.homepage
+  translation: Homepage
+- id: link.care
+  translation: Support page (Care)
+- id: link.lobby
+  translation: Lobby

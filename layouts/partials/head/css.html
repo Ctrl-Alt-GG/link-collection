@@ -1,0 +1,14 @@
+{{- /*
+  Standardized CSS loading partial.
+  - Development: plain <link>, no fingerprint (fast rebuilds, easy debugging).
+  - Production: minified + fingerprinted + subresource integrity.
+*/ -}}
+{{- with resources.Get "css/compiled/main.css" -}}
+  {{- if eq hugo.Environment "development" -}}
+    <link rel="stylesheet" href="{{ .RelPermalink }}">
+  {{- else -}}
+    {{- with . | resources.Minify | resources.Fingerprint -}}
+      <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
