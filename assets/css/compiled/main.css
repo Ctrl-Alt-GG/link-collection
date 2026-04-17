@@ -990,6 +990,7 @@
     background-color: #1da0c3;
   }
   .link-bluesky {
+    background-color: #0084ff;
     background-image: linear-gradient(2.35619rad,#5a72fa 0%,#0084ff 100%);
   }
   .link-codepen {
@@ -1023,6 +1024,7 @@
     background-color: #4285f4;
   }
   .link-instagram {
+    background-color: #c13584;
     background-image: linear-gradient(45deg,#405de6,#5851db,#833ab4,#c13584,#e1306c,#fd1d1d);
   }
   .link-keybase {
@@ -1070,6 +1072,7 @@
     color: var(--color-neutral-900);
   }
   .link-soundcloud {
+    background-color: #ff8800;
     background-image: linear-gradient(120deg,#ff8800,#ff3300);
   }
   .link-spotify {
@@ -1097,6 +1100,7 @@
     background-color: #3f88de;
   }
   .link-whatsapp {
+    background-color: #45d82c;
     background-image: linear-gradient(120deg,#12990b,#45d82c);
   }
   .link-x {
@@ -1112,24 +1116,31 @@
     background-color: #f48024;
   }
   .link-servers {
+    background-color: #6366f1;
     background-image: linear-gradient(90deg,#6366f1 0%,#a855f7 50%,#ec4899 100%);
   }
   .link-lobby {
+    background-color: #f5bfd3;
     background-image: linear-gradient(200deg,#f5bfd3 0%,#77abe6 100%);
   }
   .link-files {
+    background-color: #10b981;
     background-image: linear-gradient(90deg,#10b981 0%,#eab308 50%,#f97316 100%);
   }
   .link-homepage {
+    background-color: #06b6d4;
     background-image: linear-gradient(90deg,#06b6d4 0%,#3b82f6 50%,#4f46e5 100%);
   }
   .link-speedtest {
+    background-color: #ff0080;
     background-image: linear-gradient(135deg,#ff0080 0%,#ffea00 50%,#00ff9d 100%);
   }
   .link-gcalendar {
+    background-color: #8a2be2;
     background-image: linear-gradient(270deg,#8a2be2 0%,#00ffff 33%,#ff69b4 66%,#32cd32 100%);
   }
   .link-care {
+    background-color: #dc2626;
     background-image: linear-gradient(160deg,#dc2626 0%,#fb923c 50%,#facc15 100%);
   }
   .prose .chroma {

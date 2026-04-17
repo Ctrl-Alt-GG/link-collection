@@ -142,7 +142,7 @@
     @apply bg-[#1da0c3];
   }
   .link-bluesky {
-    @apply bg-[linear-gradient(2.35619rad,#5a72fa_0%,#0084ff_100%)];
+    @apply bg-[#0084ff] bg-[linear-gradient(2.35619rad,#5a72fa_0%,#0084ff_100%)];
   }
   .link-codepen {
     @apply bg-[#1e1f26];
@@ -175,7 +175,7 @@
     @apply bg-[#4285f4];
   }
   .link-instagram {
-    @apply bg-[linear-gradient(45deg,#405de6,#5851db,#833ab4,#c13584,#e1306c,#fd1d1d)];
+    @apply bg-[#c13584] bg-[linear-gradient(45deg,#405de6,#5851db,#833ab4,#c13584,#e1306c,#fd1d1d)];
   }
   .link-keybase {
     @apply bg-[#33a0ff];
@@ -220,7 +220,7 @@
     @apply text-neutral-900 bg-[#fffc00];
   }
   .link-soundcloud {
-    @apply bg-[linear-gradient(120deg,#ff8800,#ff3300)];
+    @apply bg-[#ff8800] bg-[linear-gradient(120deg,#ff8800,#ff3300)];
   }
   .link-spotify {
     @apply bg-[#1db954];
@@ -247,7 +247,7 @@
     @apply bg-[#3f88de];
   }
   .link-whatsapp {
-    @apply bg-[linear-gradient(120deg,#12990b,#45d82c)];
+    @apply bg-[#45d82c] bg-[linear-gradient(120deg,#12990b,#45d82c)];
   }
   .link-x {
     @apply bg-black;
@@ -264,25 +264,25 @@
 
   /* Ctrl-Alt-GG site links (formerly custom.css) */
   .link-servers {
-    @apply bg-[linear-gradient(90deg,#6366f1_0%,#a855f7_50%,#ec4899_100%)];
+    @apply bg-[#6366f1] bg-[linear-gradient(90deg,#6366f1_0%,#a855f7_50%,#ec4899_100%)];
   }
   .link-lobby {
-    @apply bg-[linear-gradient(200deg,#f5bfd3_0%,#77abe6_100%)];
+    @apply bg-[#f5bfd3] bg-[linear-gradient(200deg,#f5bfd3_0%,#77abe6_100%)];
   }
   .link-files {
-    @apply bg-[linear-gradient(90deg,#10b981_0%,#eab308_50%,#f97316_100%)];
+    @apply bg-[#10b981] bg-[linear-gradient(90deg,#10b981_0%,#eab308_50%,#f97316_100%)];
   }
   .link-homepage {
-    @apply bg-[linear-gradient(90deg,#06b6d4_0%,#3b82f6_50%,#4f46e5_100%)];
+    @apply bg-[#06b6d4] bg-[linear-gradient(90deg,#06b6d4_0%,#3b82f6_50%,#4f46e5_100%)];
   }
   .link-speedtest {
-    @apply bg-[linear-gradient(135deg,#ff0080_0%,#ffea00_50%,#00ff9d_100%)];
+    @apply bg-[#ff0080] bg-[linear-gradient(135deg,#ff0080_0%,#ffea00_50%,#00ff9d_100%)];
   }
   .link-gcalendar {
-    @apply bg-[linear-gradient(270deg,#8a2be2_0%,#00ffff_33%,#ff69b4_66%,#32cd32_100%)];
+    @apply bg-[#8a2be2] bg-[linear-gradient(270deg,#8a2be2_0%,#00ffff_33%,#ff69b4_66%,#32cd32_100%)];
   }
   .link-care {
-    @apply bg-[linear-gradient(160deg,#dc2626_0%,#fb923c_50%,#facc15_100%)];
+    @apply bg-[#dc2626] bg-[linear-gradient(160deg,#dc2626_0%,#fb923c_50%,#facc15_100%)];
   }
 
   /* Chroma syntax highlighting container */
