@@ -7,12 +7,9 @@
         class="opacity-[0.85] hover:opacity-100 transition-opacity text-white"
         aria-label="{{ $.Site.Params.author.name | default $.Site.Title | markdownify | plainify | htmlUnescape }}"
       >
-        <img
-          src="{{ .RelPermalink }}"
-          alt=""
-          aria-hidden="true"
-          class="block h-12"
-        />
+        <span class="block h-12 [&_svg]:block [&_svg]:h-full [&_svg]:w-auto" aria-hidden="true">
+          {{- .Content | safeHTML -}}
+        </span>
       </a>
     {{- end -}}
   </div>
