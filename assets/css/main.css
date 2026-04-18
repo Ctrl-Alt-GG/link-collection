@@ -5,8 +5,10 @@
 @source inline("from-brand-{600,700,800,900} to-brand-{600,700,800,900}");
 @source inline("bg-surface text-on-surface bg-surface-alt bg-surface-card border-border");
 
-@custom-variant dark (&:where(.dark, .dark *, [data-theme="dark"], [data-theme="dark"] *));
 @custom-variant dark {
+  &:where(.dark, .dark *, [data-theme="dark"], [data-theme="dark"] *) {
+    @slot;
+  }
   @media (prefers-color-scheme: dark) {
     &:not([data-theme="light"], [data-theme="light"] *) {
       @slot;
