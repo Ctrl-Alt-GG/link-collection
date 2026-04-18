@@ -2,14 +2,63 @@
 @plugin "@tailwindcss/typography";
 @source inline("{bg,text,border,decoration,ring,fill,stroke}-primary-{50,100,200,300,400,500,600,700,800,900,950}");
 @source inline("{bg,text,border,decoration,ring,fill,stroke}-brand-{50,100,200,300,400,500,600,700,800,900}");
+@source inline("from-brand-{600,700,800,900} to-brand-{600,700,800,900}");
+@source inline("bg-surface text-on-surface bg-surface-alt bg-surface-card border-border");
 
+@custom-variant dark {
+  &:where(.dark, .dark *, [data-theme="dark"], [data-theme="dark"] *) {
+    @slot;
+  }
+  @media (prefers-color-scheme: dark) {
+    &:not([data-theme="light"], [data-theme="light"] *) {
+      @slot;
+    }
+  }
+}
+
+/* ── Adaptive surface / border tokens ───────────────────────────
+   Switch between light and dark values automatically.
+   Exposed as Tailwind utilities via @theme inline below.
+   ─────────────────────────────────────────────────────────────── */
 :root {
+  --surface:       var(--color-gray-50);
+  --on-surface:    var(--color-gray-900);
+  --surface-alt:   var(--color-gray-100);
+  --surface-card:  var(--color-white);
+  --border:        var(--color-gray-200);
+
   --color-neutral-950: var(--color-gray-950, #030712);
   --radius-pill: 9999px;
   --radius-card: 0.875rem;
   --radius-panel: 1.25rem;
   --shadow-card: 0 1px 2px rgb(0 0 0 / 0.06), 0 8px 24px rgb(0 0 0 / 0.08);
   --shadow-panel: 0 2px 4px rgb(0 0 0 / 0.05), 0 20px 50px rgb(0 0 0 / 0.12);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --surface:       var(--color-gray-900);
+    --on-surface:    var(--color-gray-200);
+    --surface-alt:   var(--color-gray-800);
+    --surface-card:  var(--color-gray-800);
+    --border:        var(--color-gray-600);
+  }
+}
+
+[data-theme="dark"] {
+  --surface:       var(--color-gray-900);
+  --on-surface:    var(--color-gray-200);
+  --surface-alt:   var(--color-gray-800);
+  --surface-card:  var(--color-gray-800);
+  --border:        var(--color-gray-600);
+}
+
+@theme inline {
+  --color-surface:      var(--surface);
+  --color-on-surface:   var(--on-surface);
+  --color-surface-alt:  var(--surface-alt);
+  --color-surface-card: var(--surface-card);
+  --color-border:       var(--border);
 }
 
 /* ──────────────────────────────────────────────────────────────────
@@ -266,18 +315,20 @@
     @apply bg-[#f48024];
   }
 
-  /* Ctrl-Alt-GG site links (formerly custom.css) */
+  /* Ctrl-Alt-GG site links */
   .link-servers {
     @apply bg-[#6366f1] bg-[linear-gradient(90deg,#6366f1_0%,#a855f7_50%,#ec4899_100%)];
   }
+  /* Lobby: pastel pink-to-blue gradient — the lobby site's signature palette. */
   .link-lobby {
-    @apply bg-[#f5bfd3] bg-[linear-gradient(200deg,#f5bfd3_0%,#77abe6_100%)];
+    @apply bg-gradient-to-bl from-[#f5bfd3] to-[#77abe6] text-neutral-900;
   }
   .link-files {
     @apply bg-[#10b981] bg-[linear-gradient(90deg,#10b981_0%,#eab308_50%,#f97316_100%)];
   }
+  /* Homepage: brand-red gradient — mirrors the ctrl-alt-gg.hu header exactly. */
   .link-homepage {
-    @apply bg-[#06b6d4] bg-[linear-gradient(90deg,#06b6d4_0%,#3b82f6_50%,#4f46e5_100%)];
+    @apply bg-gradient-to-br from-brand-800 to-brand-700;
   }
   .link-speedtest {
     @apply bg-[#ff0080] bg-[linear-gradient(135deg,#ff0080_0%,#ffea00_50%,#00ff9d_100%)];
@@ -285,8 +336,9 @@
   .link-gcalendar {
     @apply bg-[#8a2be2] bg-[linear-gradient(270deg,#8a2be2_0%,#00ffff_33%,#ff69b4_66%,#32cd32_100%)];
   }
+  /* Care: blue-600 — mirrors care.ctrl-alt-gg.hu's primary action colour. */
   .link-care {
-    @apply bg-[#dc2626] bg-[linear-gradient(160deg,#dc2626_0%,#fb923c_50%,#facc15_100%)];
+    @apply bg-blue-600;
   }
 
   /* Chroma syntax highlighting container */

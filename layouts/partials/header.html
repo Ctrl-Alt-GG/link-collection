@@ -1,0 +1,16 @@
+{{- /* Site header — dark brand-red gradient, matching the ctrl-alt-gg.hu header style. */ -}}
+<header class="bg-gradient-to-br from-brand-800 to-brand-700 py-4 border-b border-white/20 [color-scheme:dark]">
+  <div class="flex justify-center px-6">
+    {{- with resources.Get "new_logo_long.svg" -}}
+      <a
+        href="{{ "/" | relLangURL }}"
+        class="opacity-85 hover:opacity-100 transition-opacity text-white"
+        aria-label="{{ $.Site.Params.author.name | default $.Site.Title | markdownify | plainify | htmlUnescape }}"
+      >
+        <span aria-hidden="true" style="display:block;height:48px">
+          {{- .Content | safeHTML -}}
+        </span>
+      </a>
+    {{- end -}}
+  </div>
+</header>
