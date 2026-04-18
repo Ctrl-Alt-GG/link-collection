@@ -40,7 +40,8 @@ pinned source.
 - `layouts/index.html` — the root template. Iterates `params.author.links`
   and renders each entry as a `<a class="link link-{type}">` button.
 - `layouts/_default/baseof.html` — page scaffold.
-- `layouts/partials/` — `head.html`, `footer.html`, `icon.html`.
+- `layouts/partials/` — `head.html`, `head/` (for nested head partials such
+  as `head/css.html` and `head/favicon.html`), `footer.html`, `icon.html`.
 - `assets/css/main.css` — Tailwind source; `assets/css/compiled/main.css`
   is generated at build time (git-ignored).
 - `assets/icons/` — SVG icon set used by the `icon.html` partial (`{name}.svg`
