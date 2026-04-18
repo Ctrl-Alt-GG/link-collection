@@ -8,3 +8,11 @@
   translation: Support page (Care)
 - id: link.lobby
   translation: Lobby
+- id: footer_family_label
+  translation: Also
+- id: family_homepage
+  translation: Homepage
+- id: family_care
+  translation: Care
+- id: family_lobby
+  translation: Lobby

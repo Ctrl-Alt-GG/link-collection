@@ -1,13 +1,19 @@
-<footer class="py-10">
-  <div class="text-center">
-    <p class="text-sm text-neutral-500 dark:text-neutral-400">
+<footer class="bg-gradient-to-br from-brand-800 to-brand-700 py-5 mt-8 border-t border-brand-600/20 text-white/40 text-sm [color-scheme:dark]">
+  <div class="px-6 text-center">
+    <p class="my-2 tracking-wider">
       {{- with .Site.Copyright }}
         {{ . | emojify | markdownify }}
       {{- else }}
-        &copy;
-        {{ now.Format "2006" }}
-        {{ .Site.Params.author.name | markdownify | emojify }}
+        &copy; {{ now.Format "2006" }} {{ .Site.Params.author.name | markdownify | emojify }}
       {{- end }}
     </p>
+    <nav aria-label="{{ i18n "footer_family_label" }}" class="my-2 flex flex-wrap items-center justify-center gap-x-3 gap-y-1">
+      <span class="text-white/60">{{ i18n "footer_family_label" }}:</span>
+      <a class="font-medium text-brand-300 hover:text-brand-200 transition-colors" href="https://www.ctrl-alt-gg.hu/">{{ i18n "family_homepage" }}</a>
+      <span aria-hidden="true" class="text-white/30">·</span>
+      <a class="font-medium text-brand-300 hover:text-brand-200 transition-colors" href="https://care.ctrl-alt-gg.hu/">{{ i18n "family_care" }}</a>
+      <span aria-hidden="true" class="text-white/30">·</span>
+      <a class="font-medium text-brand-300 hover:text-brand-200 transition-colors" href="https://lobby.ctrl-alt-gg.hu/">{{ i18n "family_lobby" }}</a>
+    </nav>
   </div>
 </footer>
