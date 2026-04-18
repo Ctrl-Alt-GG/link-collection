@@ -5,11 +5,20 @@
       <a
         href="{{ "/" | relLangURL }}"
         class="opacity-[0.85] hover:opacity-100 transition-opacity text-white"
-        aria-label="{{ $.Site.Params.author.name | default $.Site.Title | markdownify | plainify | htmlUnescape }}"
+        aria-label="{{ $.Site.Params.author.name | default $.Site.Title | plainify | htmlUnescape }}"
       >
         <span class="block h-12 [&_svg]:block [&_svg]:h-full [&_svg]:w-auto" aria-hidden="true">
           {{- .Content | safeHTML -}}
         </span>
+      </a>
+    {{- else -}}
+      {{- warnf "Missing header logo resource: %q in %q" "new_logo_long.svg" .Template.Name -}}
+      <a
+        href="{{ "/" | relLangURL }}"
+        class="opacity-[0.85] hover:opacity-100 transition-opacity text-white font-semibold"
+        aria-label="{{ $.Site.Params.author.name | default $.Site.Title | markdownify | plainify | htmlUnescape }}"
+      >
+        {{- $.Site.Title -}}
       </a>
     {{- end -}}
   </div>
