@@ -1,18 +1,10 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 @source inline("{bg,text,border,decoration,ring,fill,stroke}-primary-{50,100,200,300,400,500,600,700,800,900,950}");
+@source inline("{bg,text,border,decoration,ring,fill,stroke}-brand-{50,100,200,300,400,500,600,700,800,900}");
 
 :root {
-  --color-brand-50:  #fff1f1;
-  --color-brand-100: #ffd9d9;
-  --color-brand-200: #ffb3b3;
-  --color-brand-300: #ff7676;
-  --color-brand-400: #f14848;
-  --color-brand-500: #dd2525;
-  --color-brand-600: #aa0000;
-  --color-brand-700: #770000;
-  --color-brand-800: #560000;
-  --color-brand-900: #3d0000;
+  --color-neutral-950: var(--color-gray-950, #030712);
   --radius-pill: 9999px;
   --radius-card: 0.875rem;
   --radius-panel: 1.25rem;
