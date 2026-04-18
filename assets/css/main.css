@@ -319,7 +319,7 @@
   }
   /* Lobby: pastel pink-to-blue gradient — the lobby site's signature palette. */
   .link-lobby {
-    @apply bg-[linear-gradient(200deg,#f5bfd3_0%,#77abe6_100%)] text-neutral-900;
+    @apply bg-gradient-to-bl from-[#f5bfd3] to-[#77abe6] text-neutral-900;
   }
   .link-files {
     @apply bg-[#10b981] bg-[linear-gradient(90deg,#10b981_0%,#eab308_50%,#f97316_100%)];
