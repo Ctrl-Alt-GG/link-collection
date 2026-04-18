@@ -42,7 +42,7 @@
   {{- /* Strip attributes we inject ourselves to prevent duplicates.
          Injected attrs (id, class, width/height, role/aria) always take
          precedence over whatever the source SVG contained. */ -}}
-  {{- $existingAttrs = replaceRE `(?:^|\s)(?:id|class|width|height|role|aria-label|aria-hidden|focusable)(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s"'=<>\x60]+))?(?=\s|$)` "" $existingAttrs -}}
+  {{- $existingAttrs = replaceRE `(?:^|\s)(?:id|class|width|height|role|aria-label|aria-hidden|focusable)\b(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s"'=<>\x60]+))?` "" $existingAttrs -}}
   {{- $existingAttrs = strings.TrimSpace (replaceRE `\s+` " " $existingAttrs) -}}
   {{- $injectedAttrs := delimit $attrs " " -}}
   {{- $newOpen := $injectedAttrs -}}
