@@ -1,0 +1,27 @@
+{
+  "name": "Ctrl-Alt-GG Spawn",
+  "build": {
+    "context": "..",
+    "dockerfile": "Dockerfile"
+  },
+  "forwardPorts": [1313],
+  "portsAttributes": {
+    "1313": {
+      "label": "Hugo dev server",
+      "onAutoForward": "notify"
+    }
+  },
+  "postCreateCommand": "npm ci",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "budparr.language-hugo-vscode",
+        "bradlc.vscode-tailwindcss",
+        "tamasfe.even-better-toml",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode"
+      ]
+    }
+  },
+  "remoteUser": "vscode"
+}
