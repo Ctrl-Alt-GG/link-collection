@@ -28,11 +28,6 @@
   --border:        var(--color-gray-200);
 
   --color-neutral-950: var(--color-gray-950, #030712);
-  --radius-pill: 9999px;
-  --radius-card: 0.875rem;
-  --radius-panel: 1.25rem;
-  --shadow-card: 0 1px 2px rgb(0 0 0 / 0.06), 0 8px 24px rgb(0 0 0 / 0.08);
-  --shadow-panel: 0 2px 4px rgb(0 0 0 / 0.05), 0 20px 50px rgb(0 0 0 / 0.12);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -80,6 +75,12 @@
   --color-brand-800: #560000;
   --color-brand-900: #3d0000;
 
+  /* Dark-mode gradient stops for [color-scheme:dark] branded regions (header,
+     footer). These match the values used by the homepage and care sites, defined
+     here once to avoid magic-number duplication across partials. */
+  --color-brand-dark-from: #130404;
+  --color-brand-dark-to:   #1e0606;
+
   /* Typography — Inter first, system fallback. */
   --font-sans: "Inter", "Inter var", ui-sans-serif, system-ui, -apple-system,
     "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans",
@@ -109,9 +110,29 @@
   --color-primary-800: var(--color-purple-800);
   --color-primary-900: var(--color-purple-900);
   --color-primary-950: var(--color-purple-950);
+
+  /* Radius tokens — exposed as Tailwind utilities (rounded-card, rounded-pill, rounded-panel). */
+  --radius-pill:  9999px;
+  --radius-card:  0.875rem;
+  --radius-panel: 1.25rem;
+
+  /* Elevation tokens — exposed as Tailwind utilities (shadow-card, shadow-panel). */
+  --shadow-card:  0 1px 2px rgb(0 0 0 / 0.06), 0 8px 24px rgb(0 0 0 / 0.08);
+  --shadow-panel: 0 2px 4px rgb(0 0 0 / 0.05), 0 20px 50px rgb(0 0 0 / 0.12);
 }
 
 @layer base {
+  /* Subtle brand glow at the top of the page — mirrors the homepage's header gradient
+     into the body so the header flows naturally into the surface instead of sitting
+     as an isolated red bar. */
+  body {
+    background-image: radial-gradient(
+      ellipse 160% 28% at 50% 0%,
+      color-mix(in srgb, var(--color-brand-800) 16%, transparent),
+      transparent
+    );
+  }
+
   /* Prose typography customisation (replaces the v3 JS theme.extend.typography). */
   .prose {
     --tw-prose-body: var(--color-neutral-700);
@@ -180,9 +201,23 @@
 }
 
 @layer components {
-  /* Links */
+  /* Links — elevated card buttons aligned with the homepage's card design language. */
   .link {
-    @apply bg-primary-700 text-white hover:brightness-90;
+    @apply bg-primary-700 text-white;
+    box-shadow: var(--shadow-card);
+    transition: transform 200ms ease, filter 200ms ease, box-shadow 200ms ease;
+  }
+
+  .link:hover {
+    transform: translateY(-2px);
+    filter: brightness(0.95);
+    box-shadow: var(--shadow-panel);
+  }
+
+  .link:focus-visible {
+    transform: translateY(-2px);
+    filter: brightness(0.95);
+    box-shadow: var(--shadow-panel);
   }
 
   .link-amazon {

@@ -1,17 +1,24 @@
 {{ define "main" }}
-  <article class="mt-10 flex h-full flex-col items-center justify-center text-center">
-    <header class="mb-3 flex flex-col items-center">
-      {{ with .Site.Params.Author.headline }}
-        <h2 class="text-xl text-neutral-500 dark:text-neutral-400">
+  {{ $page := . }}
+  <article class="py-10 sm:py-14 flex flex-col items-center px-4">
+
+    {{/* ── Hero header ────────────────────────────────────────────────── */}}
+    <header class="mb-8 flex flex-col items-center text-center max-w-sm w-full">
+      {{ with $page.Site.Params.Author.headline }}
+        <h2 class="text-2xl font-light tracking-wide text-neutral-500 dark:text-neutral-400">
           {{ . | markdownify | emojify }}
         </h2>
+        {{/* Brand underline — mirrors the prose-cag h2::after stripe from the homepage. */}}
+        <div class="mt-2 h-[2px] w-10 rounded-full bg-gradient-to-r from-brand-600 to-brand-500" aria-hidden="true"></div>
       {{ end }}
-      {{ with .Content }}
-        <section class="prose pt-5 dark:prose-invert">{{ . | emojify }}</section>
+      {{ with $page.Content }}
+        <section class="prose prose-sm mt-5 dark:prose-invert">{{ . | emojify }}</section>
       {{ end }}
     </header>
-    {{ with .Site.Params.Author.links }}
-      <div class="mt-4 flex min-w-full flex-col flex-wrap sm:min-w-0">
+
+    {{/* ── Link list ───────────────────────────────────────────────────── */}}
+    {{ with $page.Site.Params.Author.links }}
+      <div class="w-full max-w-sm flex flex-col gap-3">
         {{ range $links := . }}
           {{ range $type, $data := $links }}
             {{ $href := $data }}
@@ -27,20 +34,21 @@
               {{ with $data.title }}{{ $title = . }}{{ end }}
             {{ end }}
             <a
-              class="link link-{{ $type }} mb-3 min-w-full rounded-xl py-3 text-lg font-medium transition-[filter] duration-200 sm:px-24"
+              class="link link-{{ $type }} flex items-center gap-3 w-full rounded-card py-3.5 px-5 text-base font-semibold"
               href="{{ $href }}"
               target="{{ $target }}"
-              {{ with $title }}title="{{ . }}"{{ end }}
+              {{ with $title }}title="{{ . | markdownify | plainify | htmlUnescape }}"{{ end }}
               rel="me noopener noreferrer"
             >
               {{- with $icon -}}
-                {{- partial "icon.html" (dict "name" . "class" "icon relative mr-1 inline-block align-text-bottom h-[1em] w-[1em]") -}}
+                {{- partial "icon.html" (dict "name" . "class" "shrink-0 h-5 w-5") -}}
               {{- end -}}
-              {{ $text | emojify }}
+              <span>{{ $text | emojify }}</span>
             </a>
           {{ end }}
         {{ end }}
       </div>
     {{ end }}
+
   </article>
 {{ end }}
