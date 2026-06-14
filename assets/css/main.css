@@ -81,7 +81,8 @@
   --color-brand-dark-from: #130404;
   --color-brand-dark-to:   #1e0606;
 
-  /* Typography — Inter first, system fallback. */  --font-sans: "Inter", "Inter var", ui-sans-serif, system-ui, -apple-system,
+  /* Typography — Inter first, system fallback. */
+  --font-sans: "Inter", "Inter var", ui-sans-serif, system-ui, -apple-system,
     "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans",
     Arial, sans-serif;
 
