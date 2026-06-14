@@ -112,6 +112,17 @@
 }
 
 @layer base {
+  /* Subtle brand glow at the top of the page — mirrors the homepage's header gradient
+     into the body so the header flows naturally into the surface instead of sitting
+     as an isolated red bar. */
+  body {
+    background-image: radial-gradient(
+      ellipse 160% 28% at 50% 0%,
+      color-mix(in srgb, var(--color-brand-800) 16%, transparent),
+      transparent
+    );
+  }
+
   /* Prose typography customisation (replaces the v3 JS theme.extend.typography). */
   .prose {
     --tw-prose-body: var(--color-neutral-700);
@@ -180,9 +191,17 @@
 }
 
 @layer components {
-  /* Links */
+  /* Links — elevated card buttons aligned with the homepage's card design language. */
   .link {
-    @apply bg-primary-700 text-white hover:brightness-90;
+    @apply bg-primary-700 text-white;
+    box-shadow: var(--shadow-card);
+    transition: transform 200ms ease, filter 200ms ease, box-shadow 200ms ease;
+  }
+
+  .link:hover {
+    transform: translateY(-2px);
+    filter: brightness(0.95);
+    box-shadow: var(--shadow-panel);
   }
 
   .link-amazon {
