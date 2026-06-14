@@ -80,6 +80,12 @@
   --color-brand-800: #560000;
   --color-brand-900: #3d0000;
 
+  /* Dark-mode gradient stops for [color-scheme:dark] branded regions (header,
+     footer). These match the values used by the homepage and care sites, defined
+     here once to avoid magic-number duplication across partials. */
+  --color-brand-dark-from: #130404;
+  --color-brand-dark-to:   #1e0606;
+
   /* Typography — Inter first, system fallback. */
   --font-sans: "Inter", "Inter var", ui-sans-serif, system-ui, -apple-system,
     "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans",
