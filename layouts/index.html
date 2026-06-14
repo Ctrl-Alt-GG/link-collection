@@ -37,7 +37,7 @@
               class="link link-{{ $type }} flex items-center gap-3 w-full rounded-card py-3.5 px-5 text-base font-semibold"
               href="{{ $href }}"
               target="{{ $target }}"
-              {{ with $title }}title="{{ . }}"{{ end }}
+              {{ with $title }}title="{{ . | markdownify | plainify | htmlUnescape }}"{{ end }}
               rel="me noopener noreferrer"
             >
               {{- with $icon -}}
