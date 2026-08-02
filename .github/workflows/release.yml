@@ -19,26 +19,8 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Setup Hugo
-        uses: peaceiris/actions-hugo@v3
-        with:
-          hugo-version: '0.160.0'
-          extended: true
-
-      - name: Setup Node
-        uses: actions/setup-node@v6
-        with:
-          node-version-file: '.nvmrc'
-          cache: 'npm'
-
-      - name: Install Node dependencies
-        run: npm ci
-
-      - name: Build Tailwind CSS
-        run: npm run build:css
-
       - name: Build site
-        run: hugo --environment production --minify
+        uses: ./.github/actions/build-site
 
       - name: Create release zip
         if: startsWith(github.ref, 'refs/tags/')

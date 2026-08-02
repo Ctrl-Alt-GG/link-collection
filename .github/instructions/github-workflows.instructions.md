@@ -5,15 +5,25 @@ applyTo: '.github/workflows/*.yml'
 
 # Workflow conventions
 
-Two workflows live here. Both are load-bearing.
+Three publishing workflows live here. All are load-bearing.
+
+## Shared production build
+
+- Every publishing workflow checks out the repository and then calls
+  `.github/actions/build-site/action.yml`.
+- Keep the build order in that action:
+  1. `npm ci`
+  2. `npm run build:css`
+  3. `hugo --environment production --minify`
+- Do not copy these setup or build steps back into individual workflows.
+- The action reads Node from `.nvmrc` and Hugo from
+  `module.hugoVersion` in `config.toml`.
 
 ## Azure Static Web Apps deploy
 
 - Triggered on pushes to `main` and on PR lifecycle events.
-- Build order (**must not change**):
-  1. `npm ci`
-  2. `npm run build:css`
-  3. `hugo --environment production --minify`
+- Build order is provided by the shared production build action and **must not
+  change**.
 - Uploads from `app_location: /public`. Do not change it unless Hugo's
   `publishDir` is also changed.
 - `api_location` is empty on purpose (pure static).
@@ -34,12 +44,25 @@ Two workflows live here. Both are load-bearing.
   are what keep untagged pushes from publishing phantom releases.
 - Tag format: prefer `vX.Y.Z`; any tag triggers the release job.
 
-## Versions (both workflows)
+## OCI image workflow (`publish-image.yml`)
 
-- Hugo version comes from `module.hugoVersion` in `config.toml`; keep
-  the `peaceiris/actions-hugo` input in step.
+- Triggered on pushes to `main`, tag pushes, and manual dispatches.
+- Publishes the lowercase repository name to GHCR using the default
+  `GITHUB_TOKEN`; keep job permissions limited to `contents: read` and
+  `packages: write`.
+- `latest` tracks the default branch, tag pushes retain their Git ref name,
+  and each build also receives a commit-SHA tag.
+- The Dockerfile packages the already-built `public/` directory only. Do not
+  duplicate the Node, Tailwind, or Hugo build inside the image.
+- Keep the runtime unprivileged and listening on port 8080.
+
+## Versions
+
+- Hugo version comes from `module.hugoVersion` in `config.toml`; keep the
+  `peaceiris/actions-hugo` input in the shared build action.
 - Node version is read from `.nvmrc` via `actions/setup-node`'s
-  `node-version-file`. Do not hard-code a Node version inline.
+  `node-version-file` in the shared build action. Do not hard-code a Node
+  version inline.
 
 ## Secrets and identity
 
