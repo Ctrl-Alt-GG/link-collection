@@ -22,8 +22,11 @@ by design — keep content minimal and i18n keys simple.
 | Node.js version | `.nvmrc` and `engines.node` in `package.json` |
 | Hugo version floor | `module.hugoVersion` in `config.toml` |
 | Dev / build commands | `scripts` in `package.json` |
+| Shared CI production build | `.github/actions/build-site/action.yml` |
+| OCI runtime image | `Dockerfile` |
 | Azure deploy pipeline | `.github/workflows/azure-static-web-apps-*.yml` |
 | Release pipeline (tag → zip) | `.github/workflows/release.yml` |
+| OCI image pipeline | `.github/workflows/publish-image.yml` |
 | Link dictionary (homepage content) | `[params.author]` → `links = [...]` in `config.toml` |
 | i18n labels | `i18n/en.yaml` |
 | Ignored / generated paths | `.gitignore` |
@@ -137,14 +140,18 @@ Rules:
 
 ## 8. Deployment and releases
 
-Two workflows live in `.github/workflows/`:
+Three publishing workflows live in `.github/workflows/`:
 
 - `azure-static-web-apps-*.yml` — push and PR deploys to Azure.
   `app_location: /public`. Do not rename the workflow or the secret name.
 - `release.yml` — on tag push, zips `public/` into `site.zip` and creates a
   GitHub Release with it (so the site can be hosted elsewhere if needed).
+- `publish-image.yml` — on pushes to `main` and tags, packages `public/` in
+  a non-root NGINX image and publishes it to GHCR. The default branch gets
+  `latest`, tag pushes keep the Git ref name, and all builds get a SHA tag.
 
-Required build order in both: `npm ci` → `npm run build:css` →
+All three call `.github/actions/build-site/action.yml`. Keep the required build
+order there: `npm ci` → `npm run build:css` →
 `hugo --environment production --minify`. Node version is read from `.nvmrc`;
 Hugo version is read from `module.hugoVersion` in `config.toml`.
 

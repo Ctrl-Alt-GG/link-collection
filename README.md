@@ -6,7 +6,7 @@ A tiny Hugo + Tailwind v4 site. The "product" is essentially one array — `para
 
 ## Stack
 
-Hugo (extended) + Tailwind CSS v4 + Node.js, deployed to Azure Static Web Apps. A second workflow zips the built site on tag pushes and attaches it to a GitHub Release, so the bundle can be hosted on the intranet if Azure is unreachable.
+Hugo (extended) + Tailwind CSS v4 + Node.js, deployed to Azure Static Web Apps. Additional workflows zip tagged builds for GitHub Releases and publish the site as an OCI image, so it can also run on the intranet if Azure is unreachable.
 
 Tool versions and build commands are pinned in the repo — don't copy them into docs. Read them from:
 
@@ -56,9 +56,10 @@ When opening a PR, follow [`.github/PULL_REQUEST_TEMPLATE.md`](.github/PULL_REQU
 
 ## Deployment and releases
 
-Two workflows live in `.github/workflows/`:
+Three publishing workflows live in `.github/workflows/`:
 
 - `azure-static-web-apps-*.yml` — pushes and PRs targeting `main` are built and deployed to Azure Static Web Apps. The deploy uploads from `app_location: /public`.
 - `release.yml` — on tag push, zips `public/` into `site.zip` and publishes a GitHub Release with it, so the site can be hosted elsewhere (e.g. the intranet) during the event.
+- `publish-image.yml` — on pushes to `main` and tags, packages the site in a non-root NGINX image and publishes it to `ghcr.io/ctrl-alt-gg/link-collection`. The default branch receives `latest`, tags retain their Git ref name, and every image also receives a commit-SHA tag.
 
-Both workflows run `npm ci` → `npm run build:css` → `hugo --environment production --minify`. Node version is read from `.nvmrc`; Hugo version is read from `module.hugoVersion` in `config.toml`.
+All three call `.github/actions/build-site/action.yml`, which owns the shared `npm ci` → `npm run build:css` → `hugo --environment production --minify` sequence. Node and Hugo versions are read from `.nvmrc` and `module.hugoVersion` in `config.toml`.
