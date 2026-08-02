@@ -1,0 +1,44 @@
+name: Build site
+description: Build the production Hugo site with its pinned toolchain
+
+runs:
+  using: composite
+  steps:
+    - name: Read Hugo version
+      id: hugo
+      shell: bash
+      run: |
+        hugo_version="$(
+          sed -n \
+            '/^[[:space:]]*\[module\.hugoVersion\]/,/^[[:space:]]*\[/{s/^[[:space:]]*min[[:space:]]*=[[:space:]]*"\([^"]*\)".*/\1/p}' \
+            config.toml | head -n 1
+        )"
+        if [[ -z "$hugo_version" ]]; then
+          echo "Could not read module.hugoVersion.min from config.toml" >&2
+          exit 1
+        fi
+        echo "version=$hugo_version" >> "$GITHUB_OUTPUT"
+
+    - name: Setup Hugo
+      uses: peaceiris/actions-hugo@v3
+      with:
+        hugo-version: ${{ steps.hugo.outputs.version }}
+        extended: true
+
+    - name: Setup Node
+      uses: actions/setup-node@v6
+      with:
+        node-version-file: .nvmrc
+        cache: npm
+
+    - name: Install Node dependencies
+      shell: bash
+      run: npm ci
+
+    - name: Build Tailwind CSS
+      shell: bash
+      run: npm run build:css
+
+    - name: Build Hugo site
+      shell: bash
+      run: hugo --environment production --minify
