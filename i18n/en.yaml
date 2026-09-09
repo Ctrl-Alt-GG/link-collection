@@ -8,6 +8,12 @@
   translation: Support page (Care)
 - id: link.lobby
   translation: Lobby
+- id: link.bracket
+  translation: Bracket
+- id: link.streams
+  translation: Streams
+- id: link.filehost
+  translation: Filehost
 - id: footer_family_label
   translation: Also
 - id: family_homepage

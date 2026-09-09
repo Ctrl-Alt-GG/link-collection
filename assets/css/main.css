@@ -375,6 +375,15 @@
   .link-care {
     @apply bg-blue-600;
   }
+  .link-bracket {
+    @apply bg-teal-700;
+  }
+  .link-streams {
+    @apply bg-cyan-600;
+  }
+  .link-filehost {
+    @apply bg-amber-600 text-neutral-950;
+  }
 
   /* Chroma syntax highlighting container */
   .prose .chroma {
