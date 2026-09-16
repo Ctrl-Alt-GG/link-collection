@@ -18,6 +18,8 @@ jobs:
     permissions:
       contents: read
       packages: write
+      id-token: write
+      attestations: write
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -51,9 +53,17 @@ jobs:
             type=sha
 
       - name: Build and push image
+        id: build
         uses: docker/build-push-action@v7
         with:
           context: .
           push: true
           tags: ${{ steps.metadata.outputs.tags }}
           labels: ${{ steps.metadata.outputs.labels }}
+
+      - name: Attest OCI image provenance
+        uses: actions/attest-build-provenance@v4
+        with:
+          subject-name: ${{ steps.image.outputs.name }}
+          subject-digest: ${{ steps.build.outputs.digest }}
+          push-to-registry: true
