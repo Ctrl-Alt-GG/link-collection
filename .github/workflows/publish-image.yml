@@ -46,8 +46,14 @@ jobs:
       - name: Generate image metadata
         id: metadata
         uses: docker/metadata-action@v6
+        env:
+          DOCKER_METADATA_ANNOTATIONS_LEVELS: index,manifest
         with:
           images: ${{ steps.image.outputs.name }}
+          labels: |
+            org.opencontainers.image.description=Ctrl-Alt-GG Spawn: intranet link-collection landing page for the LAN, served as a static Hugo site by nginx.
+          annotations: |
+            org.opencontainers.image.description=Ctrl-Alt-GG Spawn: intranet link-collection landing page for the LAN, served as a static Hugo site by nginx.
           tags: |
             type=raw,value=latest,enable={{is_default_branch}}
             type=ref,event=tag
@@ -59,8 +65,10 @@ jobs:
         with:
           context: .
           push: true
+          provenance: mode=max
           tags: ${{ steps.metadata.outputs.tags }}
           labels: ${{ steps.metadata.outputs.labels }}
+          annotations: ${{ steps.metadata.outputs.annotations }}
 
       - name: Attest OCI image provenance
         uses: actions/attest-build-provenance@v4
